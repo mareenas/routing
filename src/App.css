@@ -1,32 +1,124 @@
-.App {
-  text-align: center;
+.root-el {
+    width: 60%;
+    margin: 0 auto;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.content-wrapper {
+    display: flex;
+    justify-content: flex-start;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.header {
+    background-color: mediumseagreen;
+    margin-bottom: 20px;
+    padding: 25px 15px;
 }
 
-.App-link {
-  color: #61dafb;
+.sidebar-block {
+    height: 700px;
+    background-color: mediumseagreen;
+    padding: 25px 10px;
+    flex-basis: 250px;
+    flex-shrink: 0;
+    color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar-block a, .sidebar-block a:hover, .sidebar-block a:visited, .sidebar-block a:active {
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar-block li {
+    list-style-type: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.content {
+    flex-grow: 1;
+    padding-left: 20px;
+}
+
+.profile-page {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+}
+
+.profile-header {
+    background: url("http://www.xenosysusa.com/images/home/under.png");
+    background-size: 1500px 200px;
+    flex-basis: 100%;
+    min-height: 200px;
+}
+
+.profile-info {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.profile-img img {
+    width: 150px;
+}
+
+.profile-description {
+    padding-left: 50px;
+}
+
+.notes-wrapper {
+    width: 80%;
+    margin-bottom: 30px;
+}
+
+.notes-container {
+    margin-bottom: 10px;
+}
+
+.note, .message-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.note-pic, .userpic {
+    flex-basis: 40px;
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+.note-pic img, .userpic img {
+    max-width: 100%;
+}
+
+/*.note-message {*/
+    /*margin-left: 20px;*/
+/*}*/
+
+.dialogs-wrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.dialogs-sidebar {
+    border-right: 1px solid grey;
+    width: 200px;
+    flex-shrink: 0;
+}
+
+.chat {
+    margin: 15px;
+    cursor: pointer;
+}
+
+.dialog-window {
+    padding: 20px;
+}
+
+.message-wrapper {
+    margin: 10px;
+}
+
+.dialog-name-wrapper {
+    font-size: 9px;
+    text-align: center
 }
