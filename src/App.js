@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import './App.css';
 import {Route} from "react-router";
 import {BrowserRouter, Link} from "react-router-dom";
+import Moment from 'react-moment';
 
 class Header extends Component {
     render() {
         return(
             <div className="header">
-                THIS IS SPARTA
+                <Link to="/">THIS IS SPARTA</Link>
             </div>
         )
     }
@@ -39,12 +40,12 @@ class Profile extends Component {
                         <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909__340.png" alt="avatar"/>
                     </div>
                     <div className="profile-description">
-                        <h3>Илья Муромец</h3>
+                        <h3>{this.props.profile.name}</h3>
                         <div>
-                            День рождения: 22 декабря <br/>
-                            Город: Минск <br/>
-                            Образование: БГУ'11 <br/>
-                            Веб-сайт: vk.com <br/>
+                            День рождения: <Moment format="DD/MM/YYYY" unix date={this.props.profile.dateOfBirth} /> <br/>
+                            Город: {this.props.profile.city} <br/>
+                            Образование: {this.props.profile.education} <br/>
+                            Веб-сайт: <a href={this.props.profile.webSite}>{this.props.profile.webSite}</a> <br/>
                         </div>
                     </div>
                 </div>
@@ -58,31 +59,18 @@ class Profile extends Component {
                     </form>
                 </div>
                 <div className="notes-container">
-                    <div className="note">
-                        <div className="note-pic">
-                            <img
-                                src="https://marketplace.canva.com/MAB6v7RGMOw/1/thumbnail/canva-robot-electric-avatar-icon-MAB6v7RGMOw.png"
-                                alt=""/>
-                        </div>
-                        <div className="note-message">Message This is message Message This is message Message This is message Message This is message Message
-                            This is message Message This is message Message This is message Message This is message Message This is message</div>
-                    </div>
-                    <div className="note">
-                        <div className="note-pic">
-                            <img
-                                src="https://marketplace.canva.com/MAB6v7RGMOw/1/thumbnail/canva-robot-electric-avatar-icon-MAB6v7RGMOw.png"
-                                alt=""/>
-                        </div>
-                        <div className="note-message">Message</div>
-                    </div>
-                    <div className="note">
-                        <div className="note-pic">
-                            <img
-                                src="https://marketplace.canva.com/MAB6v7RGMOw/1/thumbnail/canva-robot-electric-avatar-icon-MAB6v7RGMOw.png"
-                                alt=""/>
-                        </div>
-                        <div className="note-message">Message</div>
-                    </div>
+                    {this.props.profile.wall.posts.map((post) => {
+                        return (
+                            <div className="note" key={post.id}>
+                                <div className="note-pic">
+                                    <img
+                                        src={this.props.profile.avatar}
+                                        alt=""/>
+                                </div>
+                                <div className="note-message">{post.text}</div>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         )
@@ -96,60 +84,36 @@ class Dialogs extends Component {
                 <div className="dialogs-sidebar">
                     <h3>Dialogs</h3>
                     <ul>
-                        <li className="chat">Anna</li>
-                        <li className="chat">Boris</li>
-                        <li className="chat">Carol</li>
-                        <li className="chat">Danny</li>
-                        <li className="chat">Eugene</li>
-                        <li className="chat">Fanny</li>
-                        <li className="chat">Gena</li>
-                        <li className="chat">Harley</li>
-                        <li className="chat">Ivan</li>
-                        <li className="chat">John</li>
+                        {this.props.dialogs.dialogs.map((dialog) => {
+                            return(
+                                <li className="chat" key={dialog.id}><img src={dialog.avatar} className="dialog-avatar" alt="avatar"/>{dialog.name}</li>
+                            )
+                        })}
                     </ul>
                 </div>
-                <div className="dialog-window">
-                    <div className="message-wrapper">
+                <DialogPanel dialogs={this.props.dialogs} chosenDialogIndex={0} profile={this.props.profile}/>
+            </div>
+        )
+    }
+}
+
+class DialogPanel extends Component {
+    render() {
+        let user = this.props.dialogs.dialogs[this.props.chosenDialogIndex];
+        let chosenMessages = this.props.dialogs.messages.filter((message) => {return message.userId === user.id});
+        return (
+            <div className="dialog-window">
+                {chosenMessages.map((message) => {
+                    return <div className="message-wrapper">
                         <div className="userpic">
-                            <img
-                                src="https://marketplace.canva.com/MAB6v7RGMOw/1/thumbnail/canva-robot-electric-avatar-icon-MAB6v7RGMOw.png"
-                                alt=""
-                            />
-                            <div className="dialog-name-wrapper">Name 1</div>
+                            {message.myMessage ? <img src={this.props.profile.avatar} alt="" /> : <img src={user.avatar} alt="" />}
+                            <div className="dialog-name-wrapper">
+                                {message.myMessage ? this.props.profile.name : user.name }
+                            </div>
                         </div>
-                        <div className="user-message">Privet</div>
+                        <div className="user-message">{message.text}</div>
                     </div>
-                    <div className="message-wrapper">
-                        <div className="userpic">
-                            <img
-                                src="https://us.123rf.com/450wm/yupiramos/yupiramos1702/yupiramos170211147/71857291-electric-robot-avatar-character-vector-illustration-design.jpg?ver=6"
-                                alt=""
-                            />
-                            <div className="dialog-name-wrapper">Name 2</div>
-                        </div>
-                        <div className="user-message">I tebe privet</div>
-                    </div>
-                    <div className="message-wrapper">
-                        <div className="userpic">
-                            <img
-                                src="https://marketplace.canva.com/MAB6v7RGMOw/1/thumbnail/canva-robot-electric-avatar-icon-MAB6v7RGMOw.png"
-                                alt=""
-                            />
-                            <div className="dialog-name-wrapper">Name 1</div>
-                        </div>
-                        <div className="user-message">Kak dela?</div>
-                    </div>
-                    <div className="message-wrapper">
-                        <div className="userpic">
-                            <img
-                                src="https://us.123rf.com/450wm/yupiramos/yupiramos1702/yupiramos170211147/71857291-electric-robot-avatar-character-vector-illustration-design.jpg?ver=6"
-                                alt=""
-                            />
-                            <div className="dialog-name-wrapper">Name 2</div>
-                        </div>
-                        <div className="user-message">Horosho</div>
-                    </div>
-                </div>
+                })}
             </div>
         )
     }
@@ -231,8 +195,8 @@ class App extends Component {
                             <SideBar/>
                         </div>
                         <div className='content'>
-                            <Route exact path="/profile" component={Profile} />
-                            <Route exact path="/dialogs" component={Dialogs} />
+                            <Route exact path="/profile" component={(props) => <Profile {...props} profile={this.props.profile} />} />
+                            <Route exact path="/dialogs" component={(props) => <Dialogs {...props} dialogs={this.props.dialogs} profile={this.props.profile} />} />
                             <Route exact path="/" component={RegisterLogin} />
                         </div>
                     </div>

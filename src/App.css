@@ -11,7 +11,7 @@
 .header {
     background-color: mediumseagreen;
     margin-bottom: 20px;
-    padding: 25px 15px;
+    padding: 25px 50px;
 }
 
 .sidebar-block {
@@ -23,7 +23,7 @@
     color: white;
 }
 
-.sidebar-block a, .sidebar-block a:hover, .sidebar-block a:visited, .sidebar-block a:active {
+.sidebar-block a, .sidebar-block a:hover, .sidebar-block a:visited, .sidebar-block a:active, .header a, .header a:hover, .header a:visited, .header a:active {
     color: white;
     text-decoration: none;
 }
@@ -97,13 +97,23 @@
 
 .dialogs-sidebar {
     border-right: 1px solid grey;
-    width: 200px;
+    width: 250px;
     flex-shrink: 0;
+}
+
+.dialogs-sidebar ul {
+    padding-left: 0;
 }
 
 .chat {
     margin: 15px;
     cursor: pointer;
+    list-style-type: none;
+}
+
+.dialog-avatar {
+    width: 30px;
+    margin-right: 10px;
 }
 
 .dialog-window {
