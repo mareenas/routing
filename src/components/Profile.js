@@ -1,18 +1,21 @@
 import Moment from "react-moment";
 import React from 'react';
 import style from './css/Profile.module.css';
-import {guid} from '../utils.js';
 
 const Profile = (props) => {
     let addStatus = props.addStatus;
 
     let getStatusText = () => {
+
+        let allIds = props.profile.wall.posts.map((post) => {
+            return post.id;
+        });
+        let idsSorted = allIds.sort((a, b) => { return a - b; });
+        let nextId = idsSorted.pop() + 1;
         let newStatus = {
-            id: null,
-            text: ""
+            id: nextId,
+            text: document.querySelector("#post").value
         };
-        newStatus.id = guid();
-        newStatus.text = document.querySelector("#post").value;
         if(newStatus.text !== "") {
             addStatus(newStatus);
         }
