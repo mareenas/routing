@@ -20,7 +20,7 @@ const App = (props) => {
                         <SideBar/>
                     </div>
                     <div className={style.content}>
-                        <Route exact path="/profile" component={() => <Profile profile={props.profile} />} />
+                        <Route exact path="/profile" component={() => <Profile profile={props.profile} addStatus={props.addStatus} />} />
                         <Route exact path="/dialogs" component={() => <Dialogs dialogs={props.dialogs} profile={props.profile} />} />
                         <Route exact path="/" component={RegisterLogin} />
                     </div>

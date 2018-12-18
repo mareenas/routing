@@ -24,10 +24,6 @@ let state = {
                     id: 23,
                     text: "This is second"
                 },
-                {
-                    id: 124,
-                    text: "This is third"
-                }
             ]
         }
     },
@@ -106,7 +102,19 @@ let state = {
     }
 };
 
-ReactDOM.render(<App profile={state.profile} dialogs={state.dialogs}/>, document.getElementById('root'));
+let addStatus = (status) => {
+    state.profile.wall.posts.push(status);
+    renderPage();
+};
+
+let renderPage = () => {
+    ReactDOM.render(<App profile={state.profile} dialogs={state.dialogs} addStatus={addStatus}/>, document.getElementById('root'));
+};
+
+renderPage();
+
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

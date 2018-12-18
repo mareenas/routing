@@ -1,8 +1,23 @@
 import Moment from "react-moment";
 import React from 'react';
 import style from './css/Profile.module.css';
+import {guid} from '../utils.js';
 
 const Profile = (props) => {
+    let addStatus = props.addStatus;
+
+    let getStatusText = () => {
+        let newStatus = {
+            id: null,
+            text: ""
+        };
+        newStatus.id = guid();
+        newStatus.text = document.querySelector("#post").value;
+        if(newStatus.text !== "") {
+            addStatus(newStatus);
+        }
+    };
+
     return(
         <div className={style.profilePage}>
             <div className={style.profileHeader} />
@@ -23,9 +38,9 @@ const Profile = (props) => {
             <div className={style.notesWrapper}>
                 <h3>Мои записи</h3>
                 <form>
-                    <textarea name="" id="" placeholder="Что у вас нового..." className={style.placeholderStyling} />
+                    <textarea name="" id="post" placeholder="Что у вас нового..." className={style.placeholderStyling} />
                     <div className={style.submitButtonStyling}>
-                        <input type="button" value="Отправить"/>
+                        <input type="button" value="Отправить" onClick={getStatusText}/>
                     </div>
                 </form>
             </div>
