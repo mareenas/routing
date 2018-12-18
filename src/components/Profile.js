@@ -38,7 +38,7 @@ const Profile = (props) => {
             <div className={style.notesWrapper}>
                 <h3>Мои записи</h3>
                 <form>
-                    <textarea name="" id="post" placeholder="Что у вас нового..." className={style.placeholderStyling} />
+                    <textarea name="" id="post" placeholder="Что у вас нового..." className={style.textareaStyling} />
                     <div className={style.submitButtonStyling}>
                         <input type="button" value="Отправить" onClick={getStatusText}/>
                     </div>

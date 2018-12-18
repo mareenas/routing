@@ -17,8 +17,17 @@ const DialogPanel = (props) => {
     });
 
     return (
-        <div className={style.dialogWindow}>
-            {messages}
+        <div>
+            <div className={style.dialogWindow}>
+                {messages}
+                <textarea name="" id="newMessage" cols="30" rows="10" className={style.textarea} ></textarea>
+                <div className={style.submitButtonStyling}>
+                    <input type="button" value="Отправить"/>
+                </div>
+            </div>
+            <div>
+
+            </div>
         </div>
     )
 };

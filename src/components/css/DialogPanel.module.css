@@ -22,3 +22,14 @@
 .dialogWindow {
     padding: 20px;
 }
+
+.textarea {
+    width: 100%;
+    height: 70px;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.submitButtonStyling {
+    text-align: right;
+}
