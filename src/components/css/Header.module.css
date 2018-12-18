@@ -1,0 +1,10 @@
+.header {
+    background-color: mediumseagreen;
+    margin-bottom: 20px;
+    padding: 25px 50px;
+}
+
+.header a, .header a:hover, .header a:visited, .header a:active {
+    color: white;
+    text-decoration: none;
+}

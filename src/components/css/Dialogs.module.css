@@ -1,0 +1,25 @@
+.dialogsWrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.dialogsSidebar {
+    border-right: 1px solid grey;
+    width: 250px;
+    flex-shrink: 0;
+}
+
+.dialogsSidebar ul {
+    padding-left: 0;
+}
+
+.chat {
+    margin: 15px;
+    cursor: pointer;
+    list-style-type: none;
+}
+
+.dialogAvatar {
+    width: 30px;
+    margin-right: 10px;
+}

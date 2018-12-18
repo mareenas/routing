@@ -1,0 +1,24 @@
+.messageWrapper {
+    display: flex;
+    justify-content: flex-start;
+    margin: 10px 10px 20px 10px;
+}
+
+.userpic {
+    flex-basis: 40px;
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+.userpic img {
+    max-width: 100%;
+}
+
+.dialogNameWrapper {
+    font-size: 9px;
+    text-align: center
+}
+
+.dialogWindow {
+    padding: 20px;
+}

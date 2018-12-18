@@ -1,0 +1,63 @@
+.registrationLoginForm {
+    margin: 20px auto;
+    border: 1px solid mediumseagreen;
+    width: 400px;
+    color: black;
+}
+
+.switchFormsContainer {
+    display: flex;
+    text-align: center;
+    border-bottom: 1px solid mediumseagreen;
+}
+
+.loginButton, .registrationButton {
+    flex-basis: 200px;
+    align-self: center;
+    font-size: 22px;
+    cursor: pointer;
+    line-height: 50px;
+}
+
+.loginButton {
+    border-right: 1px solid mediumseagreen;
+}
+
+.hidden {
+    display: none;
+}
+
+.inputBlock {
+    margin: 15px;
+}
+
+.inputBlock input {
+    width: 250px;
+    padding: 5px;
+}
+
+.inputBlock label {
+    line-height: 40px;
+}
+
+.bottomContainer {
+    margin: 15px;
+    display: flex;
+}
+
+.checkboxWrapper, .submitButtonWrapper {
+    display: inline-block;
+    flex-basis: 200px;
+    align-self: center;
+}
+
+.submitButtonWrapper, .registerButtonWrapper {
+    text-align: center;
+}
+
+.submitButtonLogin, .submitButtonRegister {
+    width: 150px;
+    background-color: mediumseagreen;
+    padding: 10px;
+    outline: none;
+}

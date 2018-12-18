@@ -1,15 +1,16 @@
 import Moment from "react-moment";
 import React from 'react';
+import style from './css/Profile.module.css';
 
 const Profile = (props) => {
     return(
-        <div className="profile-page">
-            <div className="profile-header" />
-            <div className="profile-info">
-                <div className="profile-img">
+        <div className={style.profilePage}>
+            <div className={style.profileHeader} />
+            <div className={style.profileInfo}>
+                <div className={style.profileImg}>
                     <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909__340.png" alt="avatar"/>
                 </div>
-                <div className="profile-description">
+                <div className={style.profileDescription}>
                     <h3>{props.profile.name}</h3>
                     <div>
                         День рождения: <Moment format="DD/MM/YYYY" unix date={props.profile.dateOfBirth} /> <br/>
@@ -19,25 +20,25 @@ const Profile = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="notes-wrapper">
+            <div className={style.notesWrapper}>
                 <h3>Мои записи</h3>
                 <form>
-                    <textarea name="" id="" placeholder="Что у вас нового..." style={{padding: '5px', width: "98%", height: '50px'}} />
-                    <div style={{textAlign: 'right'}}>
+                    <textarea name="" id="" placeholder="Что у вас нового..." className={style.placeholderStyling} />
+                    <div className={style.submitButtonStyling}>
                         <input type="button" value="Отправить"/>
                     </div>
                 </form>
             </div>
-            <div className="notes-container">
+            <div className={style.notesContainer}>
                 {props.profile.wall.posts.map((post) => {
                     return (
-                        <div className="note" key={post.id}>
-                            <div className="note-pic">
+                        <div className={style.note} key={post.id}>
+                            <div className={style.notePic}>
                                 <img
                                     src={props.profile.avatar}
                                     alt=""/>
                             </div>
-                            <div className="note-message">{post.text}</div>
+                            <div>{post.text}</div>
                         </div>
                     )
                 })}

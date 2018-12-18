@@ -1,0 +1,60 @@
+.profilePage {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+}
+
+.profileHeader {
+    background: url("http://www.xenosysusa.com/images/home/under.png");
+    background-size: 1500px 200px;
+    flex-basis: 100%;
+    min-height: 200px;
+}
+
+.profileInfo {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.profileImg img {
+    width: 150px;
+}
+
+.profileDescription {
+    padding-left: 50px;
+}
+
+.notesWrapper {
+    width: 80%;
+    margin-bottom: 30px;
+}
+
+.placeholderStyling {
+    padding: 5px;
+    width: 98%;
+    height: 50px;
+}
+
+.submitButtonStyling {
+    text-align: right;
+}
+
+.notesContainer {
+    margin-bottom: 10px;
+}
+
+.note {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.notePic {
+    flex-basis: 40px;
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+.notePic img {
+    max-width: 100%;
+}

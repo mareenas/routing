@@ -1,0 +1,34 @@
+.rootEl {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.contentWrapper {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.sidebarBlock {
+    height: 700px;
+    background-color: mediumseagreen;
+    padding: 25px 10px;
+    flex-basis: 250px;
+    flex-shrink: 0;
+    color: white;
+}
+
+.sidebarBlock a, .sidebarBlock a:hover, .sidebarBlock a:visited, .sidebarBlock a:active {
+    color: white;
+    text-decoration: none;
+}
+
+.sidebarBlock li {
+    list-style-type: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.content {
+    flex-grow: 1;
+    padding-left: 20px;
+}
