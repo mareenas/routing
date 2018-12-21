@@ -25,7 +25,7 @@ const RegisterLogin = () => {
                         </div>
                         <div className={style.bottomContainer}>
                             <div className={style.checkboxWrapper}>
-                                <input type="checkbox" id="checkbox-remember"/>
+                                <input type="checkbox" id="checkbox-remember-login"/>
                                 <label htmlFor="checkbox-remember">remember me</label>
                             </div>
                             <div className={style.submitButtonWrapper}>
@@ -50,7 +50,7 @@ const RegisterLogin = () => {
                         </div>
                         <div className={style.bottomContainer}>
                             <div className={style.checkboxWrapper}>
-                                <input type="checkbox" id="checkbox-remember"/>
+                                <input type="checkbox" id="checkbox-remember-register"/>
                                 <label htmlFor="checkbox-remember">i accept rules</label>
                             </div>
                             <div className={style.registerButtonWrapper}>

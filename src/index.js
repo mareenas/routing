@@ -31,7 +31,7 @@ let state = {
         dialogs: [
             {
                 id: 14,
-                avatar: "https://pbs.twimg.com/profile_images/1049198671810760704/AWwe7Pl0_bigger.jpg",
+                avatar: "https://pbs.twimg.com/profile_images/431048977773903872/PWL1bZQb_bigger.png",
                 name: "Peter The First"
             },
             {
@@ -107,8 +107,13 @@ let addStatus = (status) => {
     renderPage();
 };
 
+let addMessage = (message) => {
+    state.dialogs.messages.push(message);
+    renderPage();
+};
+
 let renderPage = () => {
-    ReactDOM.render(<App profile={state.profile} dialogs={state.dialogs} addStatus={addStatus}/>, document.getElementById('root'));
+    ReactDOM.render(<App profile={state.profile} dialogs={state.dialogs} addStatus={addStatus} addMessage={addMessage} />, document.getElementById('root'));
 };
 
 renderPage();

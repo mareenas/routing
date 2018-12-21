@@ -1,10 +1,9 @@
 import {Link} from "react-router-dom";
 import React from 'react';
-import style from './css/SideBar.module.css';
 
 const SideBar = () => {
     return(
-        <div className="sidebar">
+        <div>
             <ul>
                 <Link to="/profile"><li>Профиль</li></Link>
                 <Link to="/dialogs"><li>Сообщения</li></Link>
