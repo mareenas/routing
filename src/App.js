@@ -20,8 +20,8 @@ const App = (props) => {
                         <SideBar/>
                     </div>
                     <div className={style.content}>
-                        <Route exact path="/profile" component={() => <Profile profile={props.profile} addStatus={props.addStatus} />} />
-                        <Route exact path="/dialogs" component={() => <Dialogs dialogs={props.dialogs} profile={props.profile} addMessage={props.addMessage} />} />
+                        <Route exact path="/profile" component={() => <Profile profile={props.store.getState().profile} addStatus={props.store.addStatus.bind(props.store)} />} />
+                        <Route exact path="/dialogs" component={() => <Dialogs store={props.store} />} />
                         <Route exact path="/" component={RegisterLogin} />
                     </div>
                 </div>

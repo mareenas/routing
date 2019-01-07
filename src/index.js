@@ -11,6 +11,9 @@ let store = {
     subscribe(someFuncFromOuterWorlds)  {
         this._callback = someFuncFromOuterWorlds;
     },
+    reloadPage() {
+        this._callback();
+    },
     _state: {
         profile: {
             id: 2727,
@@ -122,7 +125,7 @@ let store = {
 };
 
 let renderPage = () => {
-    ReactDOM.render(<App profile={store.getState().profile} dialogs={store.getState().dialogs} addStatus={store.addStatus.bind(store)} addMessage={store.addMessage.bind(store)} />, document.getElementById('root'));
+    ReactDOM.render(<App store={store} />, document.getElementById('root'));
 };
 
 store.subscribe(renderPage);

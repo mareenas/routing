@@ -3,6 +3,7 @@ import style from './css/DialogPanel.module.css';
 import {guid} from '../utils.js';
 
 const DialogPanel = (props) => {
+    let shownDialogId = props.clickedDialogId;
     let addNewMessage = () => {
         let newMessage = {
             id: guid(),
@@ -17,7 +18,7 @@ const DialogPanel = (props) => {
     };
 
     let user = props.dialogs.dialogs.find(function(user) {
-        return user.id === props.clickedDialogId;
+        return user.id === shownDialogId;
     });
     let chosenMessages = props.dialogs.messages.filter((message) => {return message.userId === user.id});
     let messages = chosenMessages.map((message) => {
