@@ -2,22 +2,9 @@ import Moment from "react-moment";
 import React from 'react';
 import style from './css/Profile.module.css';
 import {guid} from '../utils.js';
+import {connect} from "react-redux";
 
 const Profile = (props) => {
-    let addStatus = props.addStatus;
-
-    let getStatusText = () => {
-        let newStatus = {
-            id: null,
-            text: ""
-        };
-        newStatus.id = guid();
-        newStatus.text = document.querySelector("#post").value;
-        if(newStatus.text !== "") {
-            addStatus(newStatus);
-        }
-    };
-
     return(
         <div className={style.profilePage}>
             <div className={style.profileHeader} />
@@ -40,7 +27,7 @@ const Profile = (props) => {
                 <form>
                     <textarea name="" id="post" placeholder="Что у вас нового..." className={style.textareaStyling} />
                     <div className={style.submitButtonStyling}>
-                        <input type="button" value="Отправить" onClick={getStatusText}/>
+                        <input type="button" value="Отправить" onClick={props.addStatus}/>
                     </div>
                 </form>
             </div>
@@ -62,4 +49,34 @@ const Profile = (props) => {
     )
 };
 
-export default Profile;
+const mapStateToProps = (state) => {
+    return {
+        profile: state.profile,
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addStatus: () => {
+            let postTextarea = document.querySelector("#post");
+
+            let newStatus = {
+                id: null,
+                text: ""
+            };
+            newStatus.id = guid();
+            newStatus.text = postTextarea.value;
+            if(newStatus.text !== "") {
+                dispatch({
+                    type: 'ADD_STATUS',
+                    status: newStatus
+                });
+                postTextarea.value = "";
+            }
+        },
+    }
+};
+
+const ConnectedProfile = connect(mapStateToProps, mapDispatchToProps)(Profile);
+
+export default ConnectedProfile;

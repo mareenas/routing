@@ -9,7 +9,6 @@ import Dialogs from "./components/Dialogs";
 import RegisterLogin from "./components/RegisterLogin";
 import style from './components/css/App.module.css';
 
-
 const App = (props) => {
     return (
         <BrowserRouter>
@@ -20,8 +19,8 @@ const App = (props) => {
                         <SideBar/>
                     </div>
                     <div className={style.content}>
-                        <Route exact path="/profile" component={() => <Profile profile={props.store.getState().profile} addStatus={props.store.addStatus.bind(props.store)} />} />
-                        <Route exact path="/dialogs" component={() => <Dialogs store={props.store} />} />
+                        <Route exact path="/profile" component={Profile} />
+                        <Route exact path="/dialogs" component={Dialogs} />
                         <Route exact path="/" component={RegisterLogin} />
                     </div>
                 </div>

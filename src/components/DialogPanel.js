@@ -1,9 +1,9 @@
 import React from 'react';
 import style from './css/DialogPanel.module.css';
 import {guid} from '../utils.js';
+import connect from "react-redux/es/connect/connect";
 
 const DialogPanel = (props) => {
-    let shownDialogId = props.clickedDialogId;
     let addNewMessage = () => {
         let newMessage = {
             id: guid(),
@@ -13,14 +13,16 @@ const DialogPanel = (props) => {
         };
         if(newMessage.text !== "") {
             props.addMessage(newMessage);
+            document.querySelector("#newMessage").value = "";
         }
-
     };
 
     let user = props.dialogs.dialogs.find(function(user) {
-        return user.id === shownDialogId;
+        return user.id === props.clickedDialogId;
     });
+
     let chosenMessages = props.dialogs.messages.filter((message) => {return message.userId === user.id});
+
     let messages = chosenMessages.map((message) => {
         return <div className={style.messageWrapper} key={message.id}>
             <div className={style.userpic}>
@@ -42,11 +44,28 @@ const DialogPanel = (props) => {
                     <input type="button" value="Отправить" onClick={addNewMessage} />
                 </div>
             </div>
-            <div>
-
-            </div>
         </div>
-    )
+    );
 };
 
-export default DialogPanel;
+const mapStateToProps = (state) => {
+    return {
+        dialogs: state.dialogs,
+        profile: state.profile
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addMessage: (message) => {
+            dispatch({
+                type: 'ADD_MESSAGE',
+                message: message
+            });
+        }
+    };
+};
+
+const ConnectedDialogPanel = connect(mapStateToProps, mapDispatchToProps)(DialogPanel);
+
+export default ConnectedDialogPanel;
