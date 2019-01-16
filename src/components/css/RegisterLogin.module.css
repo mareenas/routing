@@ -61,3 +61,7 @@
     padding: 10px;
     outline: none;
 }
+
+.activeTab {
+    background-color: #9cdcb1;
+}

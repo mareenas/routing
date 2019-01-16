@@ -1,4 +1,5 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
+import thunk from "redux-thunk";
 
 let initialStateProfile = {
     id: 2727,
@@ -24,6 +25,7 @@ let initialStateProfile = {
 };
 
 let initialStateDialogs = {
+    currentDialog: null,
     dialogs: [
         {
             id: 14,
@@ -97,10 +99,22 @@ let initialStateDialogs = {
     ]
 };
 
+let initialStateLogin = {
+    registerFlag: false,
+    login: "",
+    password: "",
+    rememberUser: false
+};
+
+let authInitialState = {
+    login: "lala@la",
+    logInState: false
+};
+
 const profilePageReducer = (state = initialStateProfile, action) => {
+    const newState = {...state};
     switch (action.type) {
         case 'ADD_STATUS':
-            const newState = {...state};
             newState.wall.posts.push(action.status);
             return newState;
         default:
@@ -109,10 +123,45 @@ const profilePageReducer = (state = initialStateProfile, action) => {
 };
 
 const dialogsPageReducer = (state = initialStateDialogs, action) => {
+    const newState = {...state};
     switch (action.type) {
         case 'ADD_MESSAGE':
-            const newState = {...state};
             newState.messages.push(action.message);
+            return newState;
+        case 'GET_USER_ID':
+            newState.currentDialog = action.id;
+            return newState;
+        default:
+            return state;
+    }
+};
+
+const loginPageReducer = (state = initialStateLogin, action) => {
+    const newState = {...state};
+    switch (action.type) {
+        case 'TOGGLE_FORM':
+            newState.registerFlag = action.isRegister;
+            return newState;
+        case 'REMEMBER_USER':
+            newState.rememberUser = action.rememberUser;
+            return newState;
+        case 'LOGIN_ON_CHANGE':
+            newState.login = action.login;
+            return newState;
+        case 'PASSWORD_ON_CHANGE':
+            newState.password = action.password;
+            return newState;
+        default:
+            return state;
+    }
+};
+
+const authReducer = (state = authInitialState, action) => {
+    const newState = {...state};
+    switch (action.type) {
+        case 'SET_LOG_IN_TO_TRUE':
+            newState.logInState = action.status;
+            console.log(newState.logInState);
             return newState;
         default:
             return state;
@@ -121,13 +170,13 @@ const dialogsPageReducer = (state = initialStateDialogs, action) => {
 
 const superReducer = combineReducers({
     profile: profilePageReducer,
-    dialogs: dialogsPageReducer
+    dialogs: dialogsPageReducer,
+    login: loginPageReducer,
+    auth: authReducer
 });
 
-const store = createStore(superReducer);
+const store = createStore(superReducer, applyMiddleware(thunk));
 export default store;
-
-
 
 
 

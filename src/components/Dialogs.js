@@ -1,7 +1,6 @@
 import React from 'react';
 import DialogPanel from "./DialogPanel";
 import style from './css/Dialogs.module.css';
-import {guid} from "../utils";
 import connect from "react-redux/es/connect/connect";
 
 const Dialogs = (props) => {
@@ -12,12 +11,14 @@ const Dialogs = (props) => {
                 <ul>
                     {props.dialogs.dialogs.map((dialog) => {
                         return(
-                            <li className={style.chat} key={dialog.id}><img src={dialog.avatar} className={style.dialogAvatar} alt="avatar"/>{dialog.name}</li>
+                            <li className={style.chat} key={dialog.id} onClick={(e) => props.getUserId(dialog)}>
+                                <img src={dialog.avatar} className={style.dialogAvatar} alt="avatar"/>{dialog.name}
+                            </li>
                         )
                     })}
                 </ul>
             </div>
-            <DialogPanel clickedDialogId={14} />
+            {props.dialogs.currentDialog ? <DialogPanel clickedDialogId={props.dialogs.currentDialog} /> : undefined }
         </div>
     )
 };
@@ -29,7 +30,14 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        getUserId: (dialog) => {
+            dispatch({
+                type: 'GET_USER_ID',
+                id: dialog.id
+            })
+        }
+    }
 };
 
 const ConnectedDialogs = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
