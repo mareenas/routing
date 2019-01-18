@@ -10,6 +10,52 @@ const LOGIN_ON_CHANGE = 'LOGIN_ON_CHANGE';
 const PASSWORD_ON_CHANGE = 'PASSWORD_ON_CHANGE';
 const SET_LOG_IN_TO_TRUE = 'SET_LOG_IN_TO_TRUE';
 
+export const addMessage = (message) => {
+    return {
+        type: ADD_MESSAGE,
+        message
+    }
+};
+export const getUserId = (dialog) => {
+    return {
+        type: GET_USER_ID,
+        id: dialog.id
+    }
+};
+export const addStatus = (status) => {
+    return {
+        type: ADD_STATUS,
+        status
+    }
+};
+export const toggleForm = (isRegisterFlag) => {
+    return {
+        type: TOGGLE_FORM,
+        isRegister: isRegisterFlag
+    }
+};
+export const saveLogin = (login) => {
+    return {
+        type: LOGIN_ON_CHANGE,
+        login
+    }
+};
+export const savePassword = (password) => {
+    return {
+        type: PASSWORD_ON_CHANGE,
+        password
+    }
+};
+export const logIn = (status) => {
+    return {
+        type: SET_LOG_IN_TO_TRUE,
+        status
+    }
+};
+
+
+
+
 let initialStateProfile = {
     id: 2727,
     name: 'Marina',
@@ -155,6 +201,7 @@ const loginPageReducer = (state = initialStateLogin, action) => {
             newState.rememberUser = action.rememberUser;
             return newState;
         case LOGIN_ON_CHANGE:
+            console.log(action.login);
             newState.login = action.login;
             return newState;
         case PASSWORD_ON_CHANGE:

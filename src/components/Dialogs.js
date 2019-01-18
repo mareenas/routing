@@ -2,8 +2,15 @@ import React from 'react';
 import DialogPanel from "./DialogPanel";
 import style from './css/Dialogs.module.css';
 import connect from "react-redux/es/connect/connect";
+import {getUserId} from "../store";
+import {Redirect} from "react-router";
 
 const Dialogs = (props) => {
+    if(!props.loginState) {
+        return (
+            <Redirect to="/" />
+        );
+    }
     return(
         <div className={style.dialogsWrapper}>
             <div className={style.dialogsSidebar}>
@@ -32,10 +39,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getUserId: (dialog) => {
-            dispatch({
-                type: 'GET_USER_ID',
-                id: dialog.id
-            })
+            dispatch(getUserId(dialog))
         }
     }
 };

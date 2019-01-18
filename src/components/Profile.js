@@ -3,8 +3,15 @@ import React from 'react';
 import style from './css/Profile.module.css';
 import {guid} from '../utils.js';
 import {connect} from "react-redux";
+import {addStatus} from "../store";
+import {Redirect} from "react-router";
 
 const Profile = (props) => {
+    // if(!props.loginState) {
+    //     return (
+    //         <Redirect to="/" />
+    //     );
+    // }
     return(
         <div className={style.profilePage}>
             <div className={style.profileHeader} />
@@ -67,10 +74,7 @@ const mapDispatchToProps = (dispatch) => {
             newStatus.id = guid();
             newStatus.text = postTextarea.value;
             if(newStatus.text !== "") {
-                dispatch({
-                    type: 'ADD_STATUS',
-                    status: newStatus
-                });
+                dispatch(addStatus(newStatus));
                 postTextarea.value = "";
             }
         },

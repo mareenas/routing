@@ -2,6 +2,7 @@ import React from 'react';
 import style from './css/RegisterLogin.module.css';
 import connect from "react-redux/es/connect/connect";
 import {Redirect} from "react-router";
+import {logIn, saveLogin, savePassword, toggleForm} from "../store";
 
 const RegisterLogin = (props) => {
     if(props.loginState) {
@@ -87,28 +88,16 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         toggleForm: (e, isRegister) => {
-            dispatch({
-                type: 'TOGGLE_FORM',
-                isRegister: isRegister
-            })
+            dispatch(toggleForm(isRegister))
         },
         saveLoginToState: (e) => {
-            dispatch({
-                type: "LOGIN_ON_CHANGE",
-                login: e.currentTarget.value
-            })
+            dispatch(saveLogin(e.currentTarget.value))
         },
         savePassToState: (e) => {
-            dispatch({
-                type: "PASSWORD_ON_CHANGE",
-                password: e.currentTarget.value
-            })
+            dispatch(savePassword(e.currentTarget.value))
         },
         logIn: () => {
-            dispatch({
-                type: 'SET_LOG_IN_TO_TRUE',
-                status: true
-            })
+            dispatch(logIn(true))
         }
 
     }

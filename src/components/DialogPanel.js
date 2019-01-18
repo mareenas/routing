@@ -2,6 +2,7 @@ import React from 'react';
 import style from './css/DialogPanel.module.css';
 import {guid} from '../utils.js';
 import connect from "react-redux/es/connect/connect";
+import {addMessage} from "../store";
 
 const DialogPanel = (props) => {
     let addNewMessage = () => {
@@ -58,10 +59,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         addMessage: (message) => {
-            dispatch({
-                type: 'ADD_MESSAGE',
-                message: message
-            });
+            dispatch(addMessage(message));
         }
     };
 };
