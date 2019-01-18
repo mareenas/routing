@@ -33,6 +33,7 @@ const Dialogs = (props) => {
 const mapStateToProps = (state) => {
     return {
         dialogs: state.dialogs,
+        loginState: state.auth.loginState
     }
 };
 

@@ -7,11 +7,11 @@ import {addStatus} from "../store";
 import {Redirect} from "react-router";
 
 const Profile = (props) => {
-    // if(!props.loginState) {
-    //     return (
-    //         <Redirect to="/" />
-    //     );
-    // }
+    if(!props.loginState) {
+        return (
+            <Redirect to="/" />
+        );
+    }
     return(
         <div className={style.profilePage}>
             <div className={style.profileHeader} />
@@ -59,6 +59,7 @@ const Profile = (props) => {
 const mapStateToProps = (state) => {
     return {
         profile: state.profile,
+        loginState: state.auth.loginState
     }
 };
 

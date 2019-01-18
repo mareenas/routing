@@ -9,6 +9,7 @@ const REMEMBER_USER = 'REMEMBER_USER';
 const LOGIN_ON_CHANGE = 'LOGIN_ON_CHANGE';
 const PASSWORD_ON_CHANGE = 'PASSWORD_ON_CHANGE';
 const SET_LOG_IN_TO_TRUE = 'SET_LOG_IN_TO_TRUE';
+const SET_LOG_IN_TO_FALSE = 'SET_LOG_IN_TO_FALSE';
 
 export const addMessage = (message) => {
     return {
@@ -49,6 +50,12 @@ export const savePassword = (password) => {
 export const logIn = (status) => {
     return {
         type: SET_LOG_IN_TO_TRUE,
+        status
+    }
+};
+export const logOut = (status) => {
+    return {
+        type: SET_LOG_IN_TO_FALSE,
         status
     }
 };
@@ -216,6 +223,9 @@ const authReducer = (state = authInitialState, action) => {
     const newState = {...state};
     switch (action.type) {
         case SET_LOG_IN_TO_TRUE:
+            newState.loginState = action.status;
+            return newState;
+        case SET_LOG_IN_TO_FALSE:
             newState.loginState = action.status;
             return newState;
         default:

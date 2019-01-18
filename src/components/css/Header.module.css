@@ -1,10 +1,18 @@
 .header {
     background-color: mediumseagreen;
-    margin-bottom: 20px;
-    padding: 25px 50px;
+    margin-bottom: 10px;
+    padding: 40px 50px;
 }
 
 .header a, .header a:hover, .header a:visited, .header a:active {
     color: white;
     text-decoration: none;
+}
+
+.sparta {
+    float: left;
+}
+
+.logOutButton {
+    float: right;
 }
