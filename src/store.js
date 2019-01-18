@@ -1,6 +1,15 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk from "redux-thunk";
 
+const ADD_STATUS = 'ADD_STATUS';
+const ADD_MESSAGE = 'ADD_MESSAGE';
+const GET_USER_ID = 'GET_USER_ID';
+const TOGGLE_FORM = 'TOGGLE_FORM';
+const REMEMBER_USER = 'REMEMBER_USER';
+const LOGIN_ON_CHANGE = 'LOGIN_ON_CHANGE';
+const PASSWORD_ON_CHANGE = 'PASSWORD_ON_CHANGE';
+const SET_LOG_IN_TO_TRUE = 'SET_LOG_IN_TO_TRUE';
+
 let initialStateProfile = {
     id: 2727,
     name: 'Marina',
@@ -108,13 +117,13 @@ let initialStateLogin = {
 
 let authInitialState = {
     login: "lala@la",
-    logInState: false
+    loginState: false
 };
 
 const profilePageReducer = (state = initialStateProfile, action) => {
     const newState = {...state};
     switch (action.type) {
-        case 'ADD_STATUS':
+        case ADD_STATUS:
             newState.wall.posts.push(action.status);
             return newState;
         default:
@@ -125,10 +134,10 @@ const profilePageReducer = (state = initialStateProfile, action) => {
 const dialogsPageReducer = (state = initialStateDialogs, action) => {
     const newState = {...state};
     switch (action.type) {
-        case 'ADD_MESSAGE':
+        case ADD_MESSAGE:
             newState.messages.push(action.message);
             return newState;
-        case 'GET_USER_ID':
+        case GET_USER_ID:
             newState.currentDialog = action.id;
             return newState;
         default:
@@ -139,16 +148,16 @@ const dialogsPageReducer = (state = initialStateDialogs, action) => {
 const loginPageReducer = (state = initialStateLogin, action) => {
     const newState = {...state};
     switch (action.type) {
-        case 'TOGGLE_FORM':
+        case TOGGLE_FORM:
             newState.registerFlag = action.isRegister;
             return newState;
-        case 'REMEMBER_USER':
+        case REMEMBER_USER:
             newState.rememberUser = action.rememberUser;
             return newState;
-        case 'LOGIN_ON_CHANGE':
+        case LOGIN_ON_CHANGE:
             newState.login = action.login;
             return newState;
-        case 'PASSWORD_ON_CHANGE':
+        case PASSWORD_ON_CHANGE:
             newState.password = action.password;
             return newState;
         default:
@@ -159,9 +168,8 @@ const loginPageReducer = (state = initialStateLogin, action) => {
 const authReducer = (state = authInitialState, action) => {
     const newState = {...state};
     switch (action.type) {
-        case 'SET_LOG_IN_TO_TRUE':
-            newState.logInState = action.status;
-            console.log(newState.logInState);
+        case SET_LOG_IN_TO_TRUE:
+            newState.loginState = action.status;
             return newState;
         default:
             return state;

@@ -4,7 +4,7 @@ import connect from "react-redux/es/connect/connect";
 import {Redirect} from "react-router";
 
 const RegisterLogin = (props) => {
-    if(props.logInState) {
+    if(props.loginState) {
         return (
             <Redirect to="/profile" />
         );
@@ -80,7 +80,7 @@ const mapStateToProps = (state) => {
         registerFlag: state.login.registerFlag,
         login: state.login.login,
         password: state.login.password,
-        logInState: state.auth.logInState
+        loginState: state.auth.loginState
     }
 };
 
@@ -104,7 +104,7 @@ const mapDispatchToProps = (dispatch) => {
                 password: e.currentTarget.value
             })
         },
-        logIn: (e) => {
+        logIn: () => {
             dispatch({
                 type: 'SET_LOG_IN_TO_TRUE',
                 status: true
