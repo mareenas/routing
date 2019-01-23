@@ -47,10 +47,12 @@ export const savePassword = (password) => {
         password
     }
 };
-export const logIn = (status) => {
+export const logIn = (status, login, password) => {
     return {
         type: SET_LOG_IN_TO_TRUE,
-        status
+        status,
+        login,
+        password
     }
 };
 export const logOut = (status) => {
@@ -59,9 +61,6 @@ export const logOut = (status) => {
         status
     }
 };
-
-
-
 
 let initialStateProfile = {
     id: 2727,
@@ -169,7 +168,8 @@ let initialStateLogin = {
 };
 
 let authInitialState = {
-    login: "lala@la",
+    login: "lala",
+    password: "42",
     loginState: false
 };
 
@@ -212,6 +212,7 @@ const loginPageReducer = (state = initialStateLogin, action) => {
             newState.login = action.login;
             return newState;
         case PASSWORD_ON_CHANGE:
+            console.log(action.password);
             newState.password = action.password;
             return newState;
         default:
@@ -223,7 +224,11 @@ const authReducer = (state = authInitialState, action) => {
     const newState = {...state};
     switch (action.type) {
         case SET_LOG_IN_TO_TRUE:
-            newState.loginState = action.status;
+            if(action.login === newState.login && action.password === newState.password) {
+                console.log("1 "+action.login);
+                console.log("2 "+newState.login);
+                newState.loginState = action.status;
+            }
             return newState;
         case SET_LOG_IN_TO_FALSE:
             newState.loginState = action.status;

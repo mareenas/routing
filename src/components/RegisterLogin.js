@@ -41,7 +41,7 @@ const RegisterLogin = (props) => {
                                 <label htmlFor="checkbox-remember">remember me</label>
                             </div>
                             <div className={style.submitButtonWrapper}>
-                                <input type="button" value="Login" className={style.submitButtonLogin} onClick={props.logIn}/>
+                                <input type="button" value="Login" className={style.submitButtonLogin} onClick={(e) => {props.logIn(true, props.login, props.password)}}/>
                             </div>
                         </div>
                     </form>
@@ -81,7 +81,9 @@ const mapStateToProps = (state) => {
         registerFlag: state.login.registerFlag,
         login: state.login.login,
         password: state.login.password,
-        loginState: state.auth.loginState
+        loginState: state.auth.loginState,
+        actualLogin: state.auth.login,
+        actualPassword: state.auth.password,
     }
 };
 
@@ -96,8 +98,8 @@ const mapDispatchToProps = (dispatch) => {
         savePassToState: (e) => {
             dispatch(savePassword(e.currentTarget.value))
         },
-        logIn: () => {
-            dispatch(logIn(true))
+        logIn: (status, login, password) => {
+            dispatch(logIn(status, login, password))
         }
 
     }
