@@ -2,7 +2,7 @@ import React from 'react';
 import style from './css/RegisterLogin.module.css';
 import connect from "react-redux/es/connect/connect";
 import {Redirect} from "react-router";
-import {logIn, saveLogin, savePassword, toggleForm} from "../store";
+import {saveLogin, savePassword, submitButtonClick, toggleForm} from "../store";
 
 const RegisterLogin = (props) => {
     if(props.loginState) {
@@ -41,7 +41,7 @@ const RegisterLogin = (props) => {
                                 <label htmlFor="checkbox-remember">remember me</label>
                             </div>
                             <div className={style.submitButtonWrapper}>
-                                <input type="button" value="Login" className={style.submitButtonLogin} onClick={(e) => {props.logIn(true, props.login, props.password)}}/>
+                                <input type="button" value="Login" className={style.submitButtonLogin} onClick={props.submitButtonClick} disabled={props.status==="in progress"} />
                             </div>
                         </div>
                     </form>
@@ -81,7 +81,10 @@ const mapStateToProps = (state) => {
         registerFlag: state.login.registerFlag,
         login: state.login.login,
         password: state.login.password,
+
         loginState: state.auth.loginState,
+        status: state.login.status,
+
         actualLogin: state.auth.login,
         actualPassword: state.auth.password,
     }
@@ -98,10 +101,9 @@ const mapDispatchToProps = (dispatch) => {
         savePassToState: (e) => {
             dispatch(savePassword(e.currentTarget.value))
         },
-        logIn: (status, login, password) => {
-            dispatch(logIn(status, login, password))
+        submitButtonClick: () => {
+            dispatch(submitButtonClick());
         }
-
     }
 };
 

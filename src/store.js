@@ -10,6 +10,8 @@ const LOGIN_ON_CHANGE = 'LOGIN_ON_CHANGE';
 const PASSWORD_ON_CHANGE = 'PASSWORD_ON_CHANGE';
 const SET_LOG_IN_TO_TRUE = 'SET_LOG_IN_TO_TRUE';
 const SET_LOG_IN_TO_FALSE = 'SET_LOG_IN_TO_FALSE';
+const CHANGE_STATUS = "CHANGE_STATUS";
+const SET_LOG_IN_TO_TRUE_2 = 'SET_LOG_IN_TO_TRUE_2';
 
 export const addMessage = (message) => {
     return {
@@ -47,19 +49,39 @@ export const savePassword = (password) => {
         password
     }
 };
-export const logIn = (status, login, password) => {
+export const logIn = (login, password) => {
     return {
         type: SET_LOG_IN_TO_TRUE,
-        status,
         login,
         password
     }
 };
-export const logOut = (status) => {
+
+export const setLogInToTrue = () => {
+    return {
+        type: SET_LOG_IN_TO_TRUE_2,
+    }
+};
+
+export const logOut = () => {
     return {
         type: SET_LOG_IN_TO_FALSE,
+    }
+};
+
+export const changeStatus = (status) => {
+    return {
+        type: CHANGE_STATUS,
         status
     }
+};
+
+export const submitButtonClick = () => {
+    return (dispatch) => {
+        dispatch(changeStatus("in progress"));
+        setTimeout(() => {dispatch(setLogInToTrue())},
+            3000)
+    };
 };
 
 let initialStateProfile = {
@@ -164,7 +186,8 @@ let initialStateLogin = {
     registerFlag: false,
     login: "",
     password: "",
-    rememberUser: false
+    rememberUser: false,
+    status: ""
 };
 
 let authInitialState = {
@@ -215,6 +238,10 @@ const loginPageReducer = (state = initialStateLogin, action) => {
             console.log(action.password);
             newState.password = action.password;
             return newState;
+        case CHANGE_STATUS:
+            newState.status = action.status;
+            console.log("Status changed "+newState.status);
+            return newState;
         default:
             return state;
     }
@@ -225,13 +252,15 @@ const authReducer = (state = authInitialState, action) => {
     switch (action.type) {
         case SET_LOG_IN_TO_TRUE:
             if(action.login === newState.login && action.password === newState.password) {
-                console.log("1 "+action.login);
-                console.log("2 "+newState.login);
-                newState.loginState = action.status;
+                newState.loginState = true;
             }
             return newState;
+        case SET_LOG_IN_TO_TRUE_2:
+            newState.loginState = true;
+            console.log("State is "+newState.loginState);
+            return newState;
         case SET_LOG_IN_TO_FALSE:
-            newState.loginState = action.status;
+            newState.loginState = false;
             return newState;
         default:
             return state;

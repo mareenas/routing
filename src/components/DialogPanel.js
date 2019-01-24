@@ -29,7 +29,7 @@ const DialogPanel = (props) => {
             <div className={style.userpic}>
                 {message.myMessage ? <img src={props.profile.avatar} alt="" /> : <img src={user.avatar} alt="" />}
                 <div className={style.dialogNameWrapper}>
-                    {message.myMessage ? props.profile.name : user.name }
+                    {message.myMessage ? props.profile.name : user.name}
                 </div>
             </div>
             <div>{message.text}</div>
