@@ -2,27 +2,28 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import style from './css/Header.module.css';
 import connect from "react-redux/es/connect/connect";
-import {logOut} from "../actions";
+import {logoutFunc} from "../actions";
 
 const Header = (props) => {
     return(
         <div className={style.header}>
             <Link to="/"><span className={style.sparta}>THIS IS SPARTA</span></Link>
-            <Link to="/"><span className={style.logOutButton}><button onClick={props.logOut}>Log out</button></span></Link>
+            <Link to="/"><span className={style.logOutButton}><input type="button" onClick={props.logoutFunc} value="Log out" /></span></Link>
         </div>
     )
 };
 
 const mapStateToProps = (state) => {
     return {
-        loginState: state.auth.loginState
+        loginState: state.auth.loginState,
+        status: state.login.status
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        logOut: () => {
-            dispatch(logOut())
+        logoutFunc: () => {
+            dispatch(logoutFunc())
         }
 
     }

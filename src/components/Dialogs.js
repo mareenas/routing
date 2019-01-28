@@ -6,7 +6,7 @@ import {Redirect} from "react-router";
 import {getUserId} from "../actions";
 
 const Dialogs = (props) => {
-    if(!props.loginState) {
+    if(!props.isAuth) {
         return (
             <Redirect to="/" />
         );
@@ -33,7 +33,7 @@ const Dialogs = (props) => {
 const mapStateToProps = (state) => {
     return {
         dialogs: state.dialogs,
-        loginState: state.auth.loginState
+        isAuth: state.auth.isAuth
     }
 };
 

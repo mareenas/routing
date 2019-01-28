@@ -1,3 +1,5 @@
+import axios from "./axios-instance.js";
+
 export const ADD_STATUS = 'ADD_STATUS';
 export const ADD_MESSAGE = 'ADD_MESSAGE';
 export const GET_USER_ID = 'GET_USER_ID';
@@ -52,16 +54,9 @@ export const saveRememberMe = (rememberMe) => {
         rememberMe
     }
 };
-export const logIn = (login, password) => {
-    return {
-        type: SET_LOG_IN_TO_TRUE,
-        login,
-        password
-    }
-};
 export const setLogInToTrue = () => {
     return {
-        type: SET_LOG_IN_TO_TRUE_2,
+        type: SET_LOG_IN_TO_TRUE,
     }
 };
 export const logOut = () => {
@@ -75,12 +70,37 @@ export const changeStatus = (status) => {
         status
     }
 };
-export const submitButtonClick = () => {
+export const loginFunc = (login, pass, remember) => {
     return (dispatch) => {
-        dispatch(changeStatus("in progress"));
-        // axios.post()
-        setTimeout(() => {dispatch(setLogInToTrue())},
-            3000)
+        dispatch(changeStatus("INPROGRESS"));
+        axios.post('auth/login', {
+            email: login,
+            password: pass,
+            rememberMe: remember
+        }).then((res) => {
+            if(res.data.resultCode === 0) {
+                dispatch(setLogInToTrue());
+            }else {
+                dispatch(changeStatus("INIT"));
+                alert(res.data.messages[0]);
+            }
+        })
     };
+};
+
+export const logoutFunc = () => {
+    return (dispatch) => {
+        dispatch(changeStatus("INPROGRESS"));
+        axios.post('auth/logout').then((res) => {
+            if(res.data.resultCode === 0) {
+                dispatch(saveLogin(""));
+                dispatch(savePassword(""));
+                dispatch(changeStatus("INIT"));
+                dispatch(logOut());
+            }else {
+                alert(res.data.messages[0]);
+            }
+        })
+    }
 };
 

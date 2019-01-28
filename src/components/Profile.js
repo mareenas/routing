@@ -7,7 +7,7 @@ import {Redirect} from "react-router";
 import {addStatus} from "../actions";
 
 const Profile = (props) => {
-    if(!props.loginState) {
+    if(!props.isAuth) {
         return (
             <Redirect to="/" />
         );
@@ -59,7 +59,7 @@ const Profile = (props) => {
 const mapStateToProps = (state) => {
     return {
         profile: state.profile,
-        loginState: state.auth.loginState
+        isAuth: state.auth.isAuth
     }
 };
 

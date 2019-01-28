@@ -2,10 +2,10 @@ import React from 'react';
 import style from './css/RegisterLogin.module.css';
 import connect from "react-redux/es/connect/connect";
 import {Redirect} from "react-router";
-import {saveLogin, savePassword, saveRememberMe, submitButtonClick, toggleForm} from "../actions";
+import {loginFunc, saveLogin, savePassword, saveRememberMe, toggleForm} from "../actions";
 
 const RegisterLogin = (props) => {
-    if(props.loginState) {
+    if(props.isAuth) {
         return (
             <Redirect to="/profile" />
         );
@@ -41,7 +41,7 @@ const RegisterLogin = (props) => {
                                 <label htmlFor="checkbox-remember">remember me</label>
                             </div>
                             <div className={style.submitButtonWrapper}>
-                                <input type="button" value="Login" className={style.submitButtonLogin} onClick={props.submitButtonClick} disabled={props.status==="in progress"} />
+                                <input type="button" value="Login" className={style.submitButtonLogin} onClick={(e) => {props.loginFunc(props.login, props.password, props.rememberMe)}} disabled={props.status==="INPROGRESS"} />
                             </div>
                         </div>
                     </form>
@@ -83,11 +83,10 @@ const mapStateToProps = (state) => {
         password: state.login.password,
         rememberMe: state.login.rememberMe,
 
-        loginState: state.auth.loginState,
+        isAuth: state.auth.isAuth,
         status: state.login.status,
-
-        actualLogin: state.auth.login,
-        actualPassword: state.auth.password,
+        message: state.auth.message,
+        captchaUrl: state.auth.captchaUrl
     }
 };
 
@@ -102,8 +101,8 @@ const mapDispatchToProps = (dispatch) => {
         savePassToState: (e) => {
             dispatch(savePassword(e.currentTarget.value))
         },
-        submitButtonClick: () => {
-            dispatch(submitButtonClick());
+        loginFunc: (login, pass, remember) => {
+            dispatch(loginFunc(login, pass, remember));
         },
         saveRememberMe: (e) => {
             dispatch(saveRememberMe(e.currentTarget.checked));

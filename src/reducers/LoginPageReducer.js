@@ -1,11 +1,18 @@
 import {CHANGE_STATUS, LOGIN_ON_CHANGE, PASSWORD_ON_CHANGE, REMEMBER_USER, TOGGLE_FORM} from "../actions";
 
+const statuses = {
+    INIT: "INIT",
+    ERROR: "ERROR",
+    INPROGRESS: "INPROGRESS",
+    SUCCESS: "SUCCESS"
+};
+
 let initialState = {
     registerFlag: false,
     login: "",
     password: "",
     rememberMe: false,
-    status: ""
+    status: statuses.INIT
 };
 
 export const loginPageReducer = (state = initialState, action) => {
@@ -26,7 +33,6 @@ export const loginPageReducer = (state = initialState, action) => {
             return newState;
         case CHANGE_STATUS:
             newState.status = action.status;
-            console.log("Status changed "+newState.status);
             return newState;
         default:
             return state;
