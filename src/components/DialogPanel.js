@@ -2,7 +2,7 @@ import React from 'react';
 import style from './css/DialogPanel.module.css';
 import {guid} from '../utils.js';
 import connect from "react-redux/es/connect/connect";
-import {addMessage} from "../store";
+import {addMessage} from "../actions";
 
 const DialogPanel = (props) => {
     let addNewMessage = () => {

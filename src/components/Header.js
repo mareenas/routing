@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import style from './css/Header.module.css';
 import connect from "react-redux/es/connect/connect";
-import {logOut} from "../store";
+import {logOut} from "../actions";
 
 const Header = (props) => {
     return(

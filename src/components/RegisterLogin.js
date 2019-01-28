@@ -2,7 +2,7 @@ import React from 'react';
 import style from './css/RegisterLogin.module.css';
 import connect from "react-redux/es/connect/connect";
 import {Redirect} from "react-router";
-import {saveLogin, savePassword, submitButtonClick, toggleForm} from "../store";
+import {saveLogin, savePassword, saveRememberMe, submitButtonClick, toggleForm} from "../actions";
 
 const RegisterLogin = (props) => {
     if(props.loginState) {
@@ -37,7 +37,7 @@ const RegisterLogin = (props) => {
                         </div>
                         <div className={style.bottomContainer}>
                             <div className={style.checkboxWrapper}>
-                                <input type="checkbox" id="checkbox-remember-login"/>
+                                <input type="checkbox" id="checkbox-remember-login" onChange={props.saveRememberMe}/>
                                 <label htmlFor="checkbox-remember">remember me</label>
                             </div>
                             <div className={style.submitButtonWrapper}>
@@ -81,6 +81,7 @@ const mapStateToProps = (state) => {
         registerFlag: state.login.registerFlag,
         login: state.login.login,
         password: state.login.password,
+        rememberMe: state.login.rememberMe,
 
         loginState: state.auth.loginState,
         status: state.login.status,
@@ -103,6 +104,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         submitButtonClick: () => {
             dispatch(submitButtonClick());
+        },
+        saveRememberMe: (e) => {
+            dispatch(saveRememberMe(e.currentTarget.checked));
         }
     }
 };

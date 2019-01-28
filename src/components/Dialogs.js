@@ -2,8 +2,8 @@ import React from 'react';
 import DialogPanel from "./DialogPanel";
 import style from './css/Dialogs.module.css';
 import connect from "react-redux/es/connect/connect";
-import {getUserId} from "../store";
 import {Redirect} from "react-router";
+import {getUserId} from "../actions";
 
 const Dialogs = (props) => {
     if(!props.loginState) {

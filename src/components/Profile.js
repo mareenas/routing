@@ -3,8 +3,8 @@ import React from 'react';
 import style from './css/Profile.module.css';
 import {guid} from '../utils.js';
 import {connect} from "react-redux";
-import {addStatus} from "../store";
 import {Redirect} from "react-router";
+import {addStatus} from "../actions";
 
 const Profile = (props) => {
     if(!props.loginState) {
