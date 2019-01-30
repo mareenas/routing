@@ -1,4 +1,4 @@
-import {SET_LOG_IN_TO_FALSE, SET_LOG_IN_TO_TRUE, SET_LOG_IN_TO_TRUE_2} from "../actions";
+import {SET_LOG_IN_TO_FALSE, SET_LOG_IN_TO_TRUE} from "../actions";
 
 
 let initialState = {

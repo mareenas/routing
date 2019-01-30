@@ -41,7 +41,13 @@ const RegisterLogin = (props) => {
                                 <label htmlFor="checkbox-remember">remember me</label>
                             </div>
                             <div className={style.submitButtonWrapper}>
-                                <input type="button" value="Login" className={style.submitButtonLogin} onClick={(e) => {props.loginFunc(props.login, props.password, props.rememberMe)}} disabled={props.status==="INPROGRESS"} />
+                                <input
+                                    type="button"
+                                    value={props.status==="INPROGRESS" ? "..." : "Log In" }
+                                    className={style.submitButtonLogin}
+                                    onClick={(e) => {props.loginFunc(props.login, props.password, props.rememberMe)}}
+                                    disabled={props.status==="INPROGRESS"}
+                                />
                             </div>
                         </div>
                     </form>

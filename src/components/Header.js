@@ -8,7 +8,7 @@ const Header = (props) => {
     return(
         <div className={style.header}>
             <Link to="/"><span className={style.sparta}>THIS IS SPARTA</span></Link>
-            <Link to="/"><span className={style.logOutButton}><input type="button" onClick={props.logoutFunc} value="Log out" /></span></Link>
+            <Link to="/"><span className={style.logOutButton}><input type="button" onClick={props.logoutFunc} value="Log out" disabled={props.status==="INPROGRESS"} /></span></Link>
         </div>
     )
 };

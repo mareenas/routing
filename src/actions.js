@@ -81,9 +81,9 @@ export const loginFunc = (login, pass, remember) => {
             if(res.data.resultCode === 0) {
                 dispatch(setLogInToTrue());
             }else {
-                dispatch(changeStatus("INIT"));
                 alert(res.data.messages[0]);
             }
+            dispatch(changeStatus("INIT"));
         })
     };
 };
@@ -95,11 +95,11 @@ export const logoutFunc = () => {
             if(res.data.resultCode === 0) {
                 dispatch(saveLogin(""));
                 dispatch(savePassword(""));
-                dispatch(changeStatus("INIT"));
                 dispatch(logOut());
             }else {
                 alert(res.data.messages[0]);
             }
+            dispatch(changeStatus("INIT"));
         })
     }
 };
