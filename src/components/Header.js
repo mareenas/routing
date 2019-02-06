@@ -7,7 +7,7 @@ import {logoutFunc} from "../actions";
 const Header = (props) => {
     return(
         <div className={style.header}>
-            {!props.isAuth ? <Link to="/">Log in</Link> : <span className={style.sparta}>{props.username}</span>}
+            {props.isAuth ? <span className={style.sparta}>{props.login}</span> : <Link to="/">Log in</Link>}
             {props.isAuth && <Link to="/">
                 <span className={style.logOutButton}>
                     <input type="button" onClick={props.logoutFunc} value="Log out" disabled={props.status==="INPROGRESS"} />
@@ -18,10 +18,9 @@ const Header = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        loginState: state.auth.loginState,
         status: state.login.status,
         isAuth: state.auth.isAuth,
-        username: state.auth.userInfo.userName
+        login: state.auth.userInfo.login
     }
 };
 
@@ -29,8 +28,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         logoutFunc: () => {
             dispatch(logoutFunc())
-        }
-
+        },
     }
 };
 

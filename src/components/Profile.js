@@ -20,7 +20,7 @@ const Profile = (props) => {
                     <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909__340.png" alt="avatar"/>
                 </div>
                 <div className={style.profileDescription}>
-                    <h3>{props.profile.name}</h3>
+                    <h3>{props.login}</h3>
                     <div>
                         День рождения: <Moment format="DD/MM/YYYY" unix date={props.profile.dateOfBirth} /> <br/>
                         Город: {props.profile.city} <br/>
@@ -59,7 +59,8 @@ const Profile = (props) => {
 const mapStateToProps = (state) => {
     return {
         profile: state.profile,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        login: state.auth.userInfo.login
     }
 };
 
