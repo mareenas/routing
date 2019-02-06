@@ -7,8 +7,11 @@ import {logoutFunc} from "../actions";
 const Header = (props) => {
     return(
         <div className={style.header}>
-            <Link to="/">{props.isAuth ? <span className={style.sparta}>{props.username}</span> : <span>This is sparta</span>}</Link>
-            <Link to="/"><span className={style.logOutButton}><input type="button" onClick={props.logoutFunc} value="Log out" disabled={props.status==="INPROGRESS"} /></span></Link>
+            {!props.isAuth ? <Link to="/">Log in</Link> : <span className={style.sparta}>{props.username}</span>}
+            {props.isAuth && <Link to="/">
+                <span className={style.logOutButton}>
+                    <input type="button" onClick={props.logoutFunc} value="Log out" disabled={props.status==="INPROGRESS"} />
+                </span></Link>}
         </div>
     )
 };

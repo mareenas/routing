@@ -8,9 +8,10 @@ const SideBar = () => {
             <ul>
                 <NavLink activeClassName={style.activeLink} to="/profile"><li>Профиль</li></NavLink>
                 <NavLink activeClassName={style.activeLink} to="/dialogs"><li>Сообщения</li></NavLink>
-                <li>Новости</li>
-                <li>Музыка</li>
-                <li>Настройки</li>
+                <NavLink activeClassName={style.activeLink} to="/friends"><li>Друзья</li></NavLink>
+                <NavLink activeClassName={style.activeLink} to="/music"><li>Музыка</li></NavLink>
+                <NavLink activeClassName={style.activeLink} to="/news"><li>Новости</li></NavLink>
+                <NavLink activeClassName={style.activeLink} to="/settings"><li>Настройки</li></NavLink>
             </ul>
         </div>
     )
