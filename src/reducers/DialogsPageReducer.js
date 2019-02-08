@@ -82,8 +82,10 @@ export const dialogsPageReducer = (state = initialState, action) => {
             newState.messages.push(action.message);
             return newState;
         case GET_USER_ID:
-            newState.currentDialog = action.id;
-            return newState;
+            return {
+                ...state,
+                currentDialog: action.id
+            };
         default:
             return state;
     }

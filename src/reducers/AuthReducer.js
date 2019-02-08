@@ -12,14 +12,17 @@ let initialState = {
 };
 
 export const authReducer = (state = initialState, action) => {
-    const newState = {...state};
     switch (action.type) {
         case SET_LOG_IN_TO_TRUE:
-            newState.isAuth = true;
-            return newState;
+            return {
+                ...state,
+                isAuth: true
+            };
         case SET_LOG_IN_TO_FALSE:
-            newState.isAuth = false;
-            return newState;
+            return {
+                ...state,
+                isAuth: false
+            };
         case SET_USER_INFO:
             return {
                 ...state,
@@ -29,9 +32,6 @@ export const authReducer = (state = initialState, action) => {
                     login: action.userLogin
                 }
             };
-            // newState.userInfo.userId = action.id;
-            // newState.userInfo.login = action.login;
-            // return newState;
         default:
             return state;
     }
